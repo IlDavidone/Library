@@ -1,26 +1,30 @@
-const bookInput = document.querySelector(".book");
-const pagesInput = document.querySelector(".pages");
-const authorInput = document.querySelector(".author");
-const checkStatus = document.querySelector(".read-status");
+const nameInput = document.querySelector(".game");
+const playtimeInput = document.querySelector(".playtime");
+const genreInput = document.querySelector(".genre");
+const platform = document.querySelector(".platform");
+const checkStatus = document.querySelector(".played");
+const addButton = document.querySelector(".add");
+const inputContainer = document.querySelector(".input-container");
+const closeButton = document.querySelector(".close");
 const testDiv = document.querySelector(".test");
 
-let bookArr = [], bookUid = [], checked, bookElement;
+let gameArr = [], gameUid = [], checked, bookElement, inputMenuOpened = 0;
 
-function Book(name, pages, author, read) {
+function Game(name, playtime, genre, played) {
     this.name = name;
-    this.pages = pages;
-    this.author = author;
-    this.read = read;
+    this.playtime = playtime;
+    this.genre = genre;
+    this.played = played;
 }
 
-Book.prototype.getUid = function() {
+Game.prototype.getUid = function() {
     this.uid = crypto.randomUUID();
-    bookUid.push(this.uid);
+    gameUid.push(this.uid);
 }
 
-Book.prototype.createElement = function() {
+Game.prototype.createElement = function() {
     bookElement = document.createElement("p");
-    bookElement.textContent = `${this.name}, ${this.pages}, ${this.author}`;
+    bookElement.textContent = `${this.name}, ${this.playtime}, ${this.genre}, ${platform.options[platform.selectedIndex].text}`;
     testDiv.appendChild(bookElement);
 }
 
@@ -32,8 +36,16 @@ Button.addEventListener("click", () => {
     else {
         checked = "no";
     }
-    let book = new Book(bookInput.value, pagesInput.value, authorInput.value, checked);
-    book.getUid();
-    book.createElementTest();
-    bookArr.push(book);
+    let game = new Game(nameInput.value, playtimeInput.value, genreInput.value, checked);
+    game.getUid();
+    game.createElement();
+    gameArr.push(game);
 });
+
+addButton.addEventListener("click", () => {
+    inputContainer.classList.add("opened");
+})
+
+closeButton.addEventListener("click", () => {
+    inputContainer.classList.remove("opened");
+})

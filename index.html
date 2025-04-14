@@ -11,12 +11,18 @@
     <button class="add">+</button>
 
     <div class="input-container">
+    <button class="close">X</button>
       <div class="input-field">
-        <input type="text" class="book" />
-        <input type="number" class="pages" />
-        <input type="text" class="author" />
-        <input type="checkbox" class="read-status" />
-        <button class="button">Add Book</button>
+        <input type="text" class="game" name="game" placeholder="Game name..."/>
+        <input type="number" class="playtime" name="playtime" placeholder="Playtime..."/>
+        <input type="text" class="genre" name="genre" placeholder="Genre..."/>
+        <select class="platform" name="platform">
+            <option value="playstation">Playstation</option>
+            <option value="xbox">Xbox</option>
+            <option value="switch">Nintendo Switch</option>
+            <option value="pc" selected>PC</option>
+        <input type="checkbox" class="played"/>
+        <button class="button">Add Game</button>
       </div>
     </div>
 
