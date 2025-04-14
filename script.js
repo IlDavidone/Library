@@ -8,7 +8,7 @@ const inputContainer = document.querySelector(".input-container");
 const closeButton = document.querySelector(".close");
 const testDiv = document.querySelector(".test");
 
-let gameArr = [], gameUid = [], checked, bookElement, inputMenuOpened = 0;
+let gameArr = [], gameUid = [], bookElement, inputMenuOpened = 0;
 
 function Game(name, playtime, genre, played) {
     this.name = name;
@@ -30,13 +30,7 @@ Game.prototype.createElement = function() {
 
 const Button = document.querySelector(".button");
 Button.addEventListener("click", () => {
-    if(checkStatus.checked == true){
-        checked = "yes";
-    }
-    else {
-        checked = "no";
-    }
-    let game = new Game(nameInput.value, playtimeInput.value, genreInput.value, checked);
+    let game = new Game(nameInput.value, playtimeInput.value, genreInput.value);
     game.getUid();
     game.createElement();
     gameArr.push(game);

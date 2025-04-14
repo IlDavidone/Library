@@ -1,4 +1,5 @@
 body {
+    font-family: "Roboto", sans-serif;
     height: 100%;
     width: 100%;
 }
@@ -18,4 +19,29 @@ body {
     visibility: visible;
     opacity: 1;
     z-index: 100;
+}
+
+.close {
+    margin: 10px 0 0 10px;
+}
+
+.input-field {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+}
+
+.text-input {
+    height: 30px;
+    width: 250px;
+    border-radius: 5px;
+}
+
+.dropdown {
+    height: 30px;
+    width: 250px;
+    border-radius: 5px;
 }

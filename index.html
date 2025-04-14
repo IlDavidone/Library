@@ -11,17 +11,49 @@
     <button class="add">+</button>
 
     <div class="input-container">
-    <button class="close">X</button>
+      <button class="close">X</button>
       <div class="input-field">
-        <input type="text" class="game" name="game" placeholder="Game name..."/>
-        <input type="number" class="playtime" name="playtime" placeholder="Playtime..."/>
-        <input type="text" class="genre" name="genre" placeholder="Genre..."/>
-        <select class="platform" name="platform">
+        <div class="element-container">
+          <input
+            type="text"
+            class="game text-input"
+            name="game"
+            placeholder="Game name..."
+          />
+        </div>
+        <div class="element-container">
+          <input
+            type="number"
+            class="playtime text-input"
+            name="playtime"
+            placeholder="Playtime..."
+          />
+        </div>
+        <div class="element-container">
+          <input
+            type="text"
+            class="genre text-input"
+            name="genre"
+            placeholder="Genre..."
+          />
+        </div>
+        <div class="element-container">
+          <select class="platform dropdown" name="platform">
+            <option value="default" selected>Choose a Platform...</option>
             <option value="playstation">Playstation</option>
             <option value="xbox">Xbox</option>
             <option value="switch">Nintendo Switch</option>
-            <option value="pc" selected>PC</option>
-        <input type="checkbox" class="played"/>
+            <option value="pc">PC</option>
+          </select>
+        </div>
+        <div class="element-container">
+          <select class="status dropdown" name="status">
+            <option value="default" selected>Choose a Status...</option>
+            <option value="finished">Finished</option>
+            <option value="playing">Playing</option>
+            <option value="tostart">Not started</option>
+          </select>
+        </div>
         <button class="button">Add Game</button>
       </div>
     </div>
