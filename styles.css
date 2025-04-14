@@ -7,6 +7,8 @@ body {
 .input-container {
     position: fixed;
     background-color: aqua;
+    border-radius: 10px;
+    border: 1px solid black;
     margin: 5% auto;
     height: 45%;
     width: 35%;
@@ -40,8 +42,24 @@ body {
     border-radius: 5px;
 }
 
+.text-input::placeholder {
+    text-align: center;
+}
+
 .dropdown {
     height: 30px;
     width: 250px;
     border-radius: 5px;
+}
+
+.add-button {
+    height: 50px;
+    width: 250px;
+    background-color: rgb(255, 255, 255);
+    font-size: 1.3rem;
+    border-radius: 10px;
+}
+
+.add-button:hover {
+    background-color: rgb(241, 241, 241);
 }

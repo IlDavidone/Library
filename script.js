@@ -28,7 +28,7 @@ Game.prototype.createElement = function() {
     testDiv.appendChild(bookElement);
 }
 
-const Button = document.querySelector(".button");
+const Button = document.querySelector(".add-button");
 Button.addEventListener("click", () => {
     let game = new Game(nameInput.value, playtimeInput.value, genreInput.value);
     game.getUid();
