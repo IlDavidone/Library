@@ -6,11 +6,29 @@ body {
 
 h1 {
     margin: 0;
-    margin-top: 7px;
+    margin-top: 10px;
 }
 
 p {
     margin: 12px 0 12px 0;
+}
+
+@keyframes game-card-hover {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.03);
+    }
+}
+
+@keyframes game-buttons-hover {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.10);
+    }
 }
 
 .input-container {
@@ -76,32 +94,65 @@ p {
 .content {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
     grid-auto-rows: 500px;
     padding: 20px;
 }
 
+.card-text-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
 .card-cover {
-    height: 200px;
+    border-radius: 8px;
+    height: 220px;
     width: 200px;
+    margin-top: 10px;
 }
 
 .game-card {
+    border: 1px solid black;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: blanchedalmond;
+    background-color: rgb(241, 241, 241);
     padding: 15px;
     border-radius: 15px;
+    transform: scale(1);
+    transition-duration: 0.2s;
+    
+}
+
+.game-card:hover {
+    animation-name: game-card-hover;
+    animation-duration: 200ms;
+    animation-iteration-count: 1;
+    transform: scale(1.03);
 }
 
 .card-svg {
     height: 25px;
     width: 25px;
+    transform: scale(1);
+    transition-duration: 0.2s;
+}
+
+.card-svg:hover {
+    animation: game-buttons-hover 0.3s linear 0s 1;
+    transform: scale(1.10);
+}
+
+.card-icons {
+    height: 20px;
+    width: 20px;
 }
 
 .buttons-container {
-    margin-top: 20px;
+    margin-top: 15px;
     align-self: flex-end;
     display: flex;
     gap: 8px;
