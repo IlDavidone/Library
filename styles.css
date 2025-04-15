@@ -31,6 +31,18 @@ p {
     }
 }
 
+.add {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    font-size: 1.4rem;
+}
+
+.add:hover {
+    background-color: rgb(201, 201, 201);
+    transition-duration: 0.2s;
+}
+
 .input-container {
     position: fixed;
     background-color: aqua;
@@ -60,7 +72,7 @@ p {
     gap: 20px;
     flex-direction: column;
     align-items: center;
-    padding: 40px;
+    padding: 20px;
 }
 
 .text-input {
