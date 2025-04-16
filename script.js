@@ -26,6 +26,7 @@ function Game(name, playtime, genre, played, platform, cover) {
 }
 
 Game.prototype.createElement = function () {
+  let uid = this.uid;
   let gameCard = document.createElement("div");
   gameCard.classList.add("game-card");
   contentDiv.appendChild(gameCard);
@@ -109,10 +110,17 @@ Game.prototype.createElement = function () {
   buttonsContainer.appendChild(deleteButton);
   deleteButton.addEventListener("click", () => {
     contentDiv.removeChild(gameCard);
-  })
+    removeObject(uid);
+  });
 };
 
-//var text = e.options[e.selectedIndex].text;
+function removeObject(uid) {
+    for(let i = 0; i < gameArr.length; i++) {
+        if (gameArr[i].uid == uid) {
+            delete gameArr[i];
+        }
+    }
+}
 
 const Button = document.querySelector(".add-button");
 Button.addEventListener("click", () => {
@@ -124,8 +132,8 @@ Button.addEventListener("click", () => {
     checkPlatform.options[checkPlatform.selectedIndex].text,
     coverInput.value
   );
-  game.createElement();
   gameArr.push(game);
+  game.createElement();
 });
 
 addButton.addEventListener("click", () => {
@@ -135,3 +143,4 @@ addButton.addEventListener("click", () => {
 closeButton.addEventListener("click", () => {
   inputContainer.classList.remove("opened");
 });
+
