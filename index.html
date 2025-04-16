@@ -5,31 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./default.css" />
     <link rel="stylesheet" href="./styles.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
 
     <title>Library</title>
   </head>
   <body>
-    <button class="add"><img src="./Assets/add-line.svg" alt="" class="card-icons">Add Game</button>
+    <button class="add">
+      <img src="./Assets/add-line.svg" alt="" class="card-icons" />Add Game
+    </button>
     <div class="input-container">
       <button class="close">X</button>
       <div class="input-field">
         <div class="element-container">
           <input
             type="text"
-            class="src text-input"
-            name="cover"
-            placeholder="Game cover link..."
+            class="game text-input"
+            name="game"
+            placeholder="Game name..."
+            required
           />
         </div>
         <div class="element-container">
           <input
             type="text"
-            class="game text-input"
-            name="game"
-            placeholder="Game name..."
+            class="src text-input"
+            name="cover"
+            placeholder="Game cover link..."
+            required
           />
         </div>
         <div class="element-container">
@@ -38,6 +45,7 @@
             class="playtime text-input"
             name="playtime"
             placeholder="Playtime..."
+            required
           />
         </div>
         <div class="element-container">
@@ -46,6 +54,7 @@
             class="genre text-input"
             name="genre"
             placeholder="Genre..."
+            required
           />
         </div>
         <div class="element-container">
@@ -70,26 +79,29 @@
     </div>
 
     <div class="content">
-        <div class="game-card">
-            <img src="./Assets/Halo-_Reach_box_art.png" alt="" class="card-cover">
-            <h1 class="game-title">Halo: Reach</h1>
-            <div class="card-text-wrapper">
-            <p class="playtime-card">Playtime: 54.6h </p><img src="./Assets/time-line.svg" alt="" class="card-icons">
-            </div>
-            <div class="card-text-wrapper">
-            <p class="genre-card">Genre: Shooter </p><img src="./Assets/puzzle-line.svg" alt="" class="card-icons">
-            </div>
-            <div class="card-text-wrapper">
-            <p class="platform-card">Platform: PC </p><img src="./Assets/steam-fill.svg" alt="" class="card-icons">
-            </div>
-            <p class="played-status">Status: <strong>Playing</strong></p>
-
-            <div class="buttons-container">
-              <img src="./Assets/star-line.svg" alt="" class="card-svg">
-              <img src="./Assets/eye-line.svg" alt="" class="card-svg">
-              <img src="./Assets/delete-bin-line.svg" alt="" class="card-svg">
-            </div>
+      <div class="game-card">
+        <img src="./Assets/Halo-_Reach_box_art.png" alt="" class="card-cover" />
+        <h2 class="game-title">Halo: Reach</h2>
+        <div class="card-text-wrapper">
+          <p class="playtime-card">Playtime: 54.6h</p>
+          <img src="./Assets/time-line.svg" alt="" class="card-icons" />
         </div>
+        <div class="card-text-wrapper">
+          <p class="genre-card">Genre: Shooter</p>
+          <img src="./Assets/puzzle-line.svg" alt="" class="card-icons" />
+        </div>
+        <div class="card-text-wrapper">
+          <p class="platform-card">Platform: PC</p>
+          <img src="./Assets/steam-fill.svg" alt="" class="card-icons" />
+        </div>
+        <p class="played-status">Status: Playing</p>
+
+        <div class="buttons-container">
+          <img src="./Assets/star-line.svg" alt="" class="card-svg" />
+          <img src="./Assets/eye-line.svg" alt="" class="card-svg" />
+          <img src="./Assets/delete-bin-line.svg" alt="" class="card-svg" />
+        </div>
+      </div>
     </div>
 
     <div class="test"></div>

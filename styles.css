@@ -4,13 +4,20 @@ body {
     width: 100%;
 }
 
-h1 {
+h2 {
+    font-size: 1.8rem;
     margin: 0;
     margin-top: 10px;
+    margin-bottom: 5px;
+    text-align: center;
 }
 
 p {
-    margin: 12px 0 12px 0;
+    margin: 8px 0 8px 0;
+}
+
+.bold-status-text {
+    font-weight: bold;
 }
 
 @keyframes game-card-hover {
