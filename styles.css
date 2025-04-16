@@ -16,10 +16,6 @@ p {
     margin: 8px 0 8px 0;
 }
 
-.bold-status-text {
-    font-weight: bold;
-}
-
 @keyframes game-card-hover {
     from {
         transform: scale(1);
@@ -37,6 +33,19 @@ p {
         transform: scale(1.10);
     }
 }
+
+.hidden-list {
+    position: fixed;
+    visibility: hidden;
+    left: 0;
+    right: 0;
+    margin: 5% auto;
+    background-color: aqua;
+    height: 60%;
+    width: 60%;
+}
+
+
 
 .add {
     display: flex;
@@ -61,6 +70,7 @@ p {
     left: 0;
     right: 0;
     visibility: hidden;
+    opacity: 0;
 }
 
 .opened {

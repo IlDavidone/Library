@@ -10,6 +10,8 @@ const inputContainer = document.querySelector(".input-container");
 const contentDiv = document.querySelector(".content");
 const closeButton = document.querySelector(".close");
 const testDiv = document.querySelector(".test");
+const hiddenButton = document.querySelector(".hidden");
+const hiddenList = document.querySelector(".hidden-list");
 
 let gameArr = [],
   gameCardArr = [],
@@ -22,6 +24,7 @@ function Game(name, playtime, genre, played, platform, cover) {
   this.played = played;
   this.platform = platform;
   this.cover = cover;
+  this.visible = true;
   this.uid = crypto.randomUUID();
 }
 
@@ -64,25 +67,22 @@ Game.prototype.createElement = function () {
   cardTextWrapper2.classList.add("card-text-wrapper");
   let platformCard = document.createElement("p");
   platformCard.classList.add("platform-card");
-  platformCard.textContent = `Platform: ${this.platform} `
+  platformCard.textContent = `Platform: ${this.platform} `;
   cardTextWrapper2.appendChild(platformCard);
   let platformCardIcon = document.createElement("img");
   platformCardIcon.classList.add("card-icons");
-  if(this.platform == "PC"){
+  if (this.platform == "PC") {
     platformCardIcon.src = "./Assets/steam-fill.svg";
-  }
-  else if(this.platform == "Playstation"){
+  } else if (this.platform == "Playstation") {
     platformCardIcon.src = "./Assets/playstation-fill.svg";
-  }
-  else if(this.platform == "Xbox"){
+  } else if (this.platform == "Xbox") {
     platformCardIcon.src = "./Assets/xbox-fill.svg";
-  }
-  else if(this.platform == "Nintendo Switch") {
+  } else if (this.platform == "Nintendo Switch") {
     platformCardIcon.src = "./Assets/switch-fill.svg";
   }
   cardTextWrapper2.appendChild(platformCardIcon);
   gameCard.appendChild(cardTextWrapper2);
-  let cardTextWrapper3  = document.createElement("div");
+  let cardTextWrapper3 = document.createElement("div");
   cardTextWrapper3.classList.add("card-text-wrapper");
   let playedStatus = document.createElement("p");
   playedStatus.classList.add("played-status");
@@ -104,6 +104,10 @@ Game.prototype.createElement = function () {
   hideButton.classList.add("card-svg");
   hideButton.src = "./Assets/eye-line.svg";
   buttonsContainer.appendChild(hideButton);
+  hideButton.addEventListener("click", () => {
+    hideCard(uid);
+    contentDiv.removeChild(gameCard);
+  })
   let deleteButton = document.createElement("img");
   deleteButton.classList.add("card-svg");
   deleteButton.src = "./Assets/delete-bin-line.svg";
@@ -115,9 +119,20 @@ Game.prototype.createElement = function () {
 };
 
 function removeObject(uid) {
-    for(let i = 0; i < gameArr.length; i++) {
-        if (gameArr[i].uid == uid) {
-            delete gameArr[i];
+  for (let i = 0; i < gameArr.length; i++) {
+    if (gameArr[i].uid == uid) {
+      delete gameArr[i];
+    }
+  }
+}
+
+function hideCard(uid) {
+    for (let i = 0; i < gameArr.length; i++) {
+        if ((gameArr[i].uid == uid) && gameArr[i].visible == true) {
+            gameArr[i].visible = false
+        }
+        else if ((gameArr[i].uid == uid) && gameArr[i].visible == false) {
+            gameArr[i].visible = true;
         }
     }
 }
@@ -144,3 +159,11 @@ closeButton.addEventListener("click", () => {
   inputContainer.classList.remove("opened");
 });
 
+hiddenButton.addEventListener("click", () => {
+  hiddenList.classList.add("opened");
+});
+
+const closeHidden = document.querySelector(".close-hidden");
+closeHidden.addEventListener("click", () => {
+    hiddenList.classList.remove("opened");
+})
