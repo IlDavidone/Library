@@ -107,7 +107,41 @@ Game.prototype.createElement = function () {
   hideButton.addEventListener("click", () => {
     hideCard(uid);
     gameCard.classList.toggle("no-visibility");
-  })
+    if (this.visible == false) {
+      let hiddenGameCard = document.createElement("div");
+      hiddenGameCard.classList.add("hidden-game-card");
+      hiddenList.appendChild(hiddenGameCard);
+      let hiddenTitle = document.createElement("h3");
+      hiddenTitle.classList.add("hidden-name");
+      hiddenTitle.textContent = `${this.name}`;
+      hiddenGameCard.appendChild(hiddenTitle);
+      let hiddenPlaytime = document.createElement("p");
+      hiddenPlaytime.classList.add("hidden-playtime");
+      hiddenPlaytime.textContent = `${this.playtime}h`;
+      hiddenGameCard.appendChild(hiddenPlaytime);
+      let hiddenGenre = document.createElement("p");
+      hiddenGenre.classList.add("hidden-genre");
+      hiddenGenre.textContent = `${this.genre}`;
+      hiddenGameCard.appendChild(hiddenGenre);
+      let hiddenPlatform = document.createElement("p");
+      hiddenPlatform.classList.add("hidden-platform");
+      hiddenPlatform.textContent = `${this.platform}`;
+      hiddenGameCard.appendChild(hiddenPlatform);
+      let hiddenStatus = document.createElement("p");
+      hiddenStatus.classList.add("hidden-status");
+      hiddenStatus.textContent = `${this.played}`;
+      hiddenGameCard.appendChild(hiddenStatus);
+      let restoreButton = document.createElement("button");
+      restoreButton.classList.add("restore");
+      restoreButton.textContent = "Restore";
+      hiddenGameCard.appendChild(restoreButton);
+      restoreButton.addEventListener("click", () => {
+        this.visible = true;
+        hiddenList.removeChild(hiddenGameCard);
+        gameCard.classList.toggle("no-visibility");
+      });
+    }
+  });
   let deleteButton = document.createElement("img");
   deleteButton.classList.add("card-svg");
   deleteButton.src = "./Assets/delete-bin-line.svg";
@@ -116,42 +150,6 @@ Game.prototype.createElement = function () {
     contentDiv.removeChild(gameCard);
     removeObject(uid);
   });
-  for (let i = 0; i < gameArr.length; i++) {
-    if (gameArr[i].visible == false) {
-      let hiddenGameCard = document.createElement("div");
-      hiddenGameCard.classList.add("hidden-game-card");
-      hiddenList.appendChild(hiddenGameCard);
-      let hiddenTitle = document.createElement("h3");
-      hiddenTitle.classList.add("hidden-name");
-      hiddenTitle.textContent = `${gameArr[i].name}`;
-      hiddenGameCard.appendChild(hiddenTitle);
-      let hiddenPlaytime = document.createElement("p");
-      hiddenPlaytime.classList.add("hidden-playtime");
-      hiddenPlaytime.textContent = `${gameArr[i].playtime}`;
-      hiddenGameCard.appendChild(hiddenPlaytime);
-      let hiddenGenre = document.createElement("p");
-      hiddenGenre.classList.add("hidden-genre");
-      hiddenGenre.textContent = `${gameArr[i].genre}`;
-      hiddenGameCard.appendChild(hiddenGenre);
-      let hiddenPlatform = document.createElement("p");
-      hiddenPlatform.classList.add("hidden-platform");
-      hiddenPlatform.textContent = `${gameArr[i].platform}`;
-      hiddenGameCard.appendChild(hiddenPlatform);
-      let hiddenStatus = document.createElement("p");
-      hiddenStatus.classList.add("hidden-status");
-      hiddenStatus.textContent = `${gameArr[i].status}`;
-      hiddenGameCard.appendChild(hiddenStatus);
-      let restoreButton = document.createElement("button");
-      restoreButton.classList.add("restore");
-      restoreButton.textContent = "Restore";
-      hiddenGameCard.appendChild(restoreButton);
-      restoreButton.addEventListener("click", () => {
-        gameArr[i].visible = true;
-        hiddenList.removeChild(hiddenGameCard);
-        gameCard.classList.toggle("no-visibility");
-      });
-    }
-  }
 };
 
 function removeObject(uid) {
@@ -163,15 +161,13 @@ function removeObject(uid) {
 }
 
 function hideCard(uid) {
-    for (let i = 0; i < gameArr.length; i++) {
-        if ((gameArr[i].uid == uid) && gameArr[i].visible == true) {
-            gameArr[i].visible = false;
-        }
-        else if ((gameArr[i].uid == uid) && gameArr[i].visible == false) {
-            gameArr[i].visible = true;
-        }
+  for (let i = 0; i < gameArr.length; i++) {
+    if (gameArr[i].uid == uid && gameArr[i].visible == true) {
+      gameArr[i].visible = false;
+    } else if (gameArr[i].uid == uid && gameArr[i].visible == false) {
+      gameArr[i].visible = true;
     }
-
+  }
 }
 
 const Button = document.querySelector(".add-button");
@@ -202,7 +198,5 @@ hiddenButton.addEventListener("click", () => {
 
 const closeHidden = document.querySelector(".close-hidden");
 closeHidden.addEventListener("click", () => {
-    hiddenList.classList.remove("opened");
-})
-
-
+  hiddenList.classList.remove("opened");
+});
