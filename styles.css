@@ -41,9 +41,97 @@ p {
     }
 }
 
+.header {
+    margin: 20px 20px 10px 20px;
+    padding: 15px;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: white;
+}
+
 .header-buttons {
     height: 40px;
     width: 40px;
+    border: 1px solid rgb(202, 202, 202);
+    background-color: white;
+}
+
+.left-side-elements {
+    display: flex;
+    gap: 15px;
+}
+
+.image-container {
+    height: 120px;
+    width: 120px;
+    background-color: rgb(199, 199, 199);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-image {
+    height: 110px;
+    width: 110px;
+    border-radius: 50%;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.username {
+    margin: 0;
+}
+
+.center-side-elements {
+    grid-column: 2 / span 1;
+    display: flex;
+    flex-direction: row;
+    padding: 0 100px 0 50px;
+    justify-content: center;
+    align-items: center;
+}
+
+.searchbar {
+    flex: 1 0 auto;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid rgb(202, 202, 202);
+    padding-left: 10px;
+}
+
+.searchbar::placeholder {
+    color: rgb(190, 190, 190);
+    padding-left: 2px;
+}
+
+.right-side-elements {
+    grid-column: 3 / span 1;
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.header-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 100px;
+}
+
+.header-icons {
+    height: 30px;
+    width: 30px;
 }
 
 .hidden-list {
