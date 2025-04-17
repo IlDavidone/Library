@@ -23,6 +23,15 @@ p {
     opacity: 1;
 }
 
+.blur-effect {
+    -webkit-filter: blur(3px);
+    -moz-filter: blur(3px);
+    -o-filter: blur(3px);
+    -ms-filter: blur(3px);
+    filter: blur(3px);
+    transition: 0.1s;
+}
+
 @keyframes game-card-hover {
     from {
         transform: scale(1);
@@ -41,15 +50,24 @@ p {
     }
 }
 
+@keyframes menu-opening {
+    from {
+        transform: scale(0.9);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
 .header {
-    margin: 20px 20px 10px 20px;
-    padding: 15px;
+    padding: 25px 35px 25px 35px;
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
     position: sticky;
     top: 0;
     z-index: 1000;
     background-color: white;
+    border-bottom: 1px solid rgb(218, 218, 218);
 }
 
 .header-buttons {
@@ -113,6 +131,13 @@ p {
     padding-left: 2px;
 }
 
+.search-button {
+    margin-left: 5px;
+    padding: 5px;
+    height: 30px;
+    width: 30px;
+}
+
 .right-side-elements {
     grid-column: 3 / span 1;
     display: flex;
@@ -127,6 +152,19 @@ p {
     justify-content: center;
     height: 50px;
     width: 100px;
+    padding: 0;
+    background-color: white;
+    transition-duration: 0.2s;
+}
+
+.header-buttons:hover {
+    background-color: rgb(238, 238, 238);
+    transition-duration: 0.2s;
+}
+
+.header-buttons:active {
+    background-color: rgb(226, 226, 226);
+    transition-duration: 0.2s;
 }
 
 .header-icons {
@@ -182,16 +220,11 @@ p {
     justify-items: center;
 }
 
-.add:hover {
-    background-color: rgb(201, 201, 201);
-    transition-duration: 0.2s;
-}
-
 .input-container {
     position: fixed;
-    background-color: aqua;
+    background-color: rgb(255, 255, 255);
     border-radius: 10px;
-    border: 1px solid black;
+    border: 2px solid rgb(185, 185, 185);
     margin: 5% auto;
     height: 45%;
     width: 35%;
@@ -205,10 +238,20 @@ p {
     visibility: visible;
     opacity: 1;
     z-index: 100;
+    animation: menu-opening 0.1s linear 0s 1;
 }
 
 .close {
     margin: 10px 0 0 10px;
+    border-radius: 5px;
+    border: 1px solid rgb(185, 185, 185);
+    background-color: white;
+}
+
+.close:hover {
+    background-color: rgb(238, 238, 238);
+    border: 1px solid rgb(207, 206, 206);
+    transition-duration: 0.2s;
 }
 
 .input-field {
@@ -224,6 +267,7 @@ p {
     height: 30px;
     width: 250px;
     border-radius: 5px;
+    border: 1px solid rgb(185, 185, 185);
 }
 
 .text-input::placeholder {
@@ -234,6 +278,9 @@ p {
     height: 30px;
     width: 250px;
     border-radius: 5px;
+    border: 1px solid rgb(185, 185, 185);
+    text-align: center;
+    font-weight: 300;
 }
 
 .add-button {
@@ -242,10 +289,19 @@ p {
     background-color: rgb(255, 255, 255);
     font-size: 1.3rem;
     border-radius: 10px;
+    margin-top: 5px;
+    border: 1px solid rgb(185, 185, 185);
+    font-weight: 500;
 }
 
 .add-button:hover {
-    background-color: rgb(241, 241, 241);
+    background-color: rgb(238, 238, 238);
+    transition-duration: 0.2s;
+}
+
+.add-button:active {
+    background-color: rgb(226, 226, 226);
+    transition-duration: 0.2s;
 }
 
 .content {
@@ -254,6 +310,7 @@ p {
     gap: 20px;
     grid-auto-rows: 500px;
     padding: 20px;
+    margin-top: 10px;
 }
 
 .card-text-wrapper {
@@ -276,7 +333,7 @@ p {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: rgb(241, 241, 241);
+    background-color: rgb(248, 248, 248);
     padding: 15px;
     border-radius: 15px;
     transform: scale(1);

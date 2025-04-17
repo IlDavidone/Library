@@ -12,6 +12,7 @@ const closeButton = document.querySelector(".close");
 const testDiv = document.querySelector(".test");
 const hiddenButton = document.querySelector(".hidden");
 const hiddenList = document.querySelector(".hidden-list");
+const header = document.querySelector(".header");
 
 let gameArr = [],
   gameCardArr = [],
@@ -196,10 +197,22 @@ Button.addEventListener("click", () => {
 
 addButton.addEventListener("click", () => {
   inputContainer.classList.add("opened");
+  contentDiv.classList.add("blur-effect");
+  header.classList.add("blur-effect");
 });
 
 closeButton.addEventListener("click", () => {
   inputContainer.classList.remove("opened");
+  contentDiv.classList.remove("blur-effect");
+  header.classList.remove("blur-effect");
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.code == "Escape") {
+    inputContainer.classList.remove("opened");
+    contentDiv.classList.remove("blur-effect");
+    header.classList.remove("blur-effect");
+  }
 });
 
 hiddenButton.addEventListener("click", () => {
