@@ -41,6 +41,11 @@ p {
     }
 }
 
+.header-buttons {
+    height: 40px;
+    width: 40px;
+}
+
 .hidden-list {
     position: fixed;
     visibility: hidden;
@@ -87,13 +92,6 @@ p {
     display: grid;
     grid-template-columns: 1.2fr 1fr 1fr 1fr 1fr 1fr;
     justify-items: center;
-}
-
-.add {
-    display: flex;
-    align-items: center;
-    font-weight: 600;
-    font-size: 1.4rem;
 }
 
 .add:hover {
