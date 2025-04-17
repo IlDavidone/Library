@@ -16,6 +16,13 @@ p {
     margin: 8px 0 8px 0;
 }
 
+.no-visibility {
+    visibility: hidden;
+    position: absolute;
+    z-index: -1;
+    opacity: 1;
+}
+
 @keyframes game-card-hover {
     from {
         transform: scale(1);
@@ -40,12 +47,43 @@ p {
     left: 0;
     right: 0;
     margin: 5% auto;
-    background-color: aqua;
+    background-color: rgb(234, 247, 247);
     height: 60%;
     width: 60%;
+    display: grid;
+    border: 1px solid black;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
 }
 
+.close-hidden {
+    margin: 5px 0 0 5px;
+    min-height: 40px;
+    min-width: 40px;
+    height: 40px; 
+    width: 40px;
+}
 
+.hidden-name {
+    justify-self: flex-start;
+    margin-left: 5px;
+}
+
+.restore {
+    height: 50px;
+    margin: 0 5px 0 5px;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.hidden-game-card {
+    padding: 10px 10px 10px 10px;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr 1fr 1fr 1fr;
+    justify-items: center;
+}
 
 .add {
     display: flex;
