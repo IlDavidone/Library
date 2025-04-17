@@ -25,6 +25,7 @@ function Game(name, playtime, genre, played, platform, cover) {
   this.platform = platform;
   this.cover = cover;
   this.visible = true;
+  this.favorite = false;
   this.uid = crypto.randomUUID();
 }
 
@@ -100,6 +101,15 @@ Game.prototype.createElement = function () {
   favoriteButton.classList.add("card-svg");
   favoriteButton.src = "./Assets/star-line.svg";
   buttonsContainer.appendChild(favoriteButton);
+  favoriteButton.addEventListener("click", () => {
+    this.favorite == false ? this.favorite = true : this.favorite = false;
+    if (this.favorite == true) {
+      favoriteButton.src = "./Assets/star-fill.svg";
+    }
+    else if (this.favorite == false) {
+      favoriteButton.src = "./Assets/star-line.svg";
+    }
+  })
   let hideButton = document.createElement("img");
   hideButton.classList.add("card-svg");
   hideButton.src = "./Assets/eye-line.svg";

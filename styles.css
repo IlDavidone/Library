@@ -57,6 +57,10 @@ p {
     flex-direction: column;
 }
 
+.hidden-game-card > p {
+    font-weight: 700;
+}
+
 .close-hidden {
     margin: 5px 0 0 5px;
     min-height: 40px;
@@ -211,6 +215,11 @@ p {
 .card-svg:hover {
     animation: game-buttons-hover 0.3s linear 0s 1;
     transform: scale(1.10);
+}
+
+.card-svg:active {
+    transform: scale(0.90);
+    transition-duration: 0.3s;
 }
 
 .card-icons {
