@@ -55,28 +55,33 @@
             <img src="" alt="" class="profile-image-preview" />
           </div>
           <div class="profile-input">
-            <input type="text" name="username" placeholder="Username..." />
+            <input
+              type="text"
+              name="username-value"
+              placeholder="Username..."
+              class="username-value"
+            />
             <input
               type="text"
               name="profile-picture-url"
               placeholder="Picture Url..."
+              class="profile-picture-url"
             />
           </div>
         </div>
         <div class="grid-setting">
-        <p>
-          Game Cards grid size:
-          <label for="grid-size" class="grid-size">5</label>
-        </p>
-        <input
-          type="range"
-          id="grid-size"
-          name="grid-size"
-          id=""
-          min="2"
-          max="6"
-          class="grid-size"
-        />
+          <p>
+            Game Cards grid size:
+            <label for="grid-size" class="grid-size-output">4</label>
+          </p>
+          <input
+            type="range"
+            id="grid-size"
+            name="grid-size"
+            min="3"
+            max="5"
+            class="grid-size"
+          />
         </div>
         <button class="save-settings">Save</button>
       </div>

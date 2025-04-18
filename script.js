@@ -21,6 +21,8 @@ let gameArr = [],
   placeholderCounter = 0,
   inputMenuOpened = 0;
 
+let userInfo = {};
+
 let placeholderPara = document.createElement("p");
   placeholderPara.textContent = "Looks like there's nothing here to see...";
   placeholderPara.classList.add("placeholder");
@@ -119,14 +121,6 @@ closeButton.addEventListener("click", () => {
   header.classList.remove("blur-effect");
 });
 
-document.addEventListener("keydown", (e) => {
-  if (e.code == "Escape") {
-    inputContainer.classList.remove("opened");
-    contentDiv.classList.remove("blur-effect");
-    header.classList.remove("blur-effect");
-  }
-});
-
 hiddenButton.addEventListener("click", () => {
   hiddenList.classList.add("opened");
   settingsMenu.classList.remove("opened");
@@ -156,6 +150,39 @@ closeSettings.addEventListener("click", () => {
   contentDiv.classList.remove("blur-effect");
   header.classList.remove("blur-effect");
 });
+
+document.addEventListener("keydown", (e) => {
+  if (e.code == "Escape") {
+    inputContainer.classList.remove("opened");
+    settingsMenu.classList.remove("opened");
+    hiddenList.classList.remove("opened");
+    contentDiv.classList.remove("blur-effect");
+    header.classList.remove("blur-effect");
+  }
+});
+
+const saveSettingsButton = document.querySelector(".save-settings");
+const usernameValue = document.querySelector(".username-value");
+const profilePictureUrl = document.querySelector(".profile-picture-url");
+const gridSize = document.querySelector("#grid-size");
+const gridSizeOutput = document.querySelector(".grid-size-output");
+const username = document.querySelector(".username");
+const profileImagePreview = document.querySelector(".profile-image-preview");
+const profileImage = document.querySelector(".profile-image");
+
+gridSize.addEventListener("input", (event) => {
+  gridSizeOutput.textContent = event.target.value;
+})
+
+saveSettingsButton.addEventListener("click", () => {
+  userInfo.picture = profilePictureUrl.value;
+  userInfo.username = usernameValue.value;
+  userInfo.gridsize = gridSize.value; 
+  username.textContent = usernameValue.value;
+  profileImage.src = profilePictureUrl.value;
+  profileImagePreview.src = profilePictureUrl.value;
+  contentDiv.style.gridTemplateColumns = `repeat(${gridSize.value}, 1fr)`;
+})
 
 
 function searchFunction() {
