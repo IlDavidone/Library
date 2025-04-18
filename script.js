@@ -17,6 +17,10 @@ const settingsButton = document.querySelector(".settings-button");
 const settingsMenu = document.querySelector(".settings");
 
 let gameArr = [],
+  gameArrSerialization = [],
+  gameArrDeserialization = [],
+  profileInfoSerialization = {},
+  profileInfoDeserialization = {},
   gameCardArr = [],
   placeholderCounter = 0,
   inputMenuOpened = 0;
@@ -24,9 +28,46 @@ let gameArr = [],
 let userInfo = {};
 
 let placeholderPara = document.createElement("p");
-  placeholderPara.textContent = "Looks like there's nothing here to see...";
-  placeholderPara.classList.add("placeholder");
+placeholderPara.textContent = "Looks like there's nothing here to see...";
+placeholderPara.classList.add("placeholder");
 
+function storeParameters() {
+  gameArrSerialization = JSON.stringify(gameArr);
+  localStorage.setItem("gameArr", gameArrSerialization);
+}
+
+gameArrDeserialization = JSON.parse(localStorage.getItem("gameArr"));
+
+function storeProfileParameters() {
+  profileInfoSerialization = JSON.stringify(userInfo);
+  localStorage.setItem("userInfo", profileInfoSerialization);
+}
+
+profileInfoDeserialization = JSON.parse(localStorage.getItem("userInfo"));
+
+window.addEventListener("load", (event) => {
+  for (let i = 0; i < gameArrDeserialization.length; i++) {
+    createCard(
+      gameArrDeserialization[i].uid,
+      gameArrDeserialization[i].cover,
+      gameArrDeserialization[i].name,
+      gameArrDeserialization[i].playtime,
+      gameArrDeserialization[i].genre,
+      gameArrDeserialization[i].platform,
+      gameArrDeserialization[i].played,
+      gameArrDeserialization[i].favorite,
+      gameArrDeserialization[i].visible
+    );
+    gameArr.push(gameArrDeserialization[i]);
+ }
+  if (contentDiv.hasChildNodes() == false) {
+    document.body.appendChild(placeholderPara);
+    placeholderCounter = 1;
+  }
+  username.textContent = profileInfoDeserialization.username;
+  profileImage.src = profileInfoDeserialization.picture;
+  profileImagePreview.src = profileInfoDeserialization.picture;
+  contentDiv.style.gridTemplateColumns = `repeat(${profileInfoDeserialization.gridsize}, 1fr)`;});
 
 function Game(name, playtime, genre, played, platform, cover) {
   this.name = name;
@@ -41,13 +82,14 @@ function Game(name, playtime, genre, played, platform, cover) {
 }
 
 const searchButton = document.querySelector(".search-button");
-  searchButton.addEventListener("click", () => {
-    searchFunction();
-  });
+searchButton.addEventListener("click", () => {
+  searchFunction();
+});
 
 Game.prototype.createElement = function () {
   let uid = this.uid;
-  createCard(this.uid,
+  createCard(
+    this.uid,
     this.cover,
     this.name,
     this.playtime,
@@ -105,6 +147,7 @@ Button.addEventListener("click", () => {
     document.body.removeChild(placeholderPara);
     placeholderCounter = 0;
   }
+  storeParameters();
 });
 
 addButton.addEventListener("click", () => {
@@ -172,29 +215,30 @@ const profileImage = document.querySelector(".profile-image");
 
 gridSize.addEventListener("input", (event) => {
   gridSizeOutput.textContent = event.target.value;
-})
+});
 
 saveSettingsButton.addEventListener("click", () => {
   userInfo.picture = profilePictureUrl.value;
   userInfo.username = usernameValue.value;
-  userInfo.gridsize = gridSize.value; 
+  userInfo.gridsize = gridSize.value;
   username.textContent = usernameValue.value;
   profileImage.src = profilePictureUrl.value;
   profileImagePreview.src = profilePictureUrl.value;
   contentDiv.style.gridTemplateColumns = `repeat(${gridSize.value}, 1fr)`;
-})
-
+  storeProfileParameters();
+});
 
 function searchFunction() {
   let searchbarValue = document.querySelector(".searchbar").value;
   contentDiv.textContent = "";
-    for (let i = 0; i < gameArr.length; i++) {
-      if ((gameArr[i].name).includes(searchbarValue) == true) {
-        if (gameArr[i].visible == false) {
-          return;
-        }
-        if (gameArr[i].visible == true){
-        createCard(gameArr[i].uid, 
+  for (let i = 0; i < gameArr.length; i++) {
+    if (gameArr[i].name.includes(searchbarValue) == true) {
+      if (gameArr[i].visible == false) {
+        return;
+      }
+      if (gameArr[i].visible == true) {
+        createCard(
+          gameArr[i].uid,
           gameArr[i].cover,
           gameArr[i].name,
           gameArr[i].playtime,
@@ -205,11 +249,21 @@ function searchFunction() {
           gameArr[i].visible
         );
       }
-      }
     }
   }
+}
 
-function createCard(uid, cover, name, playtime, genre, platform, played, favorite, visible) {
+function createCard(
+  uid,
+  cover,
+  name,
+  playtime,
+  genre,
+  platform,
+  played,
+  favorite,
+  visible
+) {
   let gameCard = document.createElement("div");
   gameCard.classList.add("game-card");
   contentDiv.appendChild(gameCard);
@@ -281,54 +335,94 @@ function createCard(uid, cover, name, playtime, genre, platform, played, favorit
   favoriteButton.src = "./Assets/star-line.svg";
   buttonsContainer.appendChild(favoriteButton);
   favoriteButton.addEventListener("click", () => {
-    favorite == false ? favorite = true : favorite = false;
+    favorite == false ? (favorite = true) : (favorite = false);
     if (favorite == true) {
       favoriteButton.src = "./Assets/star-fill.svg";
-    }
-    else if (favorite == false) {
+    } else if (favorite == false) {
       favoriteButton.src = "./Assets/star-line.svg";
     }
-  })
+  });
   let hideButton = document.createElement("img");
   hideButton.classList.add("card-svg");
   hideButton.src = "./Assets/eye-line.svg";
   buttonsContainer.appendChild(hideButton);
+  if(visible == false) {
+    hideCard(uid);
+    gameCard.classList.add("no-visibility");
+    let hiddenGameCard = document.createElement("div");
+    hiddenGameCard.classList.add("hidden-game-card");
+    hiddenList.appendChild(hiddenGameCard);
+    let hiddenTitle = document.createElement("h3");
+    hiddenTitle.classList.add("hidden-name");
+    hiddenTitle.textContent = `${name}`;
+    hiddenGameCard.appendChild(hiddenTitle);
+    let hiddenPlaytime = document.createElement("p");
+    hiddenPlaytime.classList.add("hidden-playtime");
+    hiddenPlaytime.textContent = `${playtime}h`;
+    hiddenGameCard.appendChild(hiddenPlaytime);
+    let hiddenGenre = document.createElement("p");
+    hiddenGenre.classList.add("hidden-genre");
+    hiddenGenre.textContent = `${genre}`;
+    hiddenGameCard.appendChild(hiddenGenre);
+    let hiddenPlatform = document.createElement("p");
+    hiddenPlatform.classList.add("hidden-platform");
+    hiddenPlatform.textContent = `${platform}`;
+    hiddenGameCard.appendChild(hiddenPlatform);
+    let hiddenStatus = document.createElement("p");
+    hiddenStatus.classList.add("hidden-status");
+    hiddenStatus.textContent = `${played}`;
+    hiddenGameCard.appendChild(hiddenStatus);
+    let restoreButton = document.createElement("button");
+    restoreButton.classList.add("restore");
+    restoreButton.textContent = "Restore";
+    hiddenGameCard.appendChild(restoreButton);
+    storeParameters();
+    restoreButton.addEventListener("click", () => {
+      showCard(uid);
+      searchFunction();
+      hiddenList.removeChild(hiddenGameCard);
+      gameCard.classList.remove("no-visibility");
+      storeParameters();
+  })
+  }
   hideButton.addEventListener("click", () => {
     hideCard(uid);
     gameCard.classList.add("no-visibility");
-      let hiddenGameCard = document.createElement("div");
-      hiddenGameCard.classList.add("hidden-game-card");
-      hiddenList.appendChild(hiddenGameCard);
-      let hiddenTitle = document.createElement("h3");
-      hiddenTitle.classList.add("hidden-name");
-      hiddenTitle.textContent = `${name}`;
-      hiddenGameCard.appendChild(hiddenTitle);
-      let hiddenPlaytime = document.createElement("p");
-      hiddenPlaytime.classList.add("hidden-playtime");
-      hiddenPlaytime.textContent = `${playtime}h`;
-      hiddenGameCard.appendChild(hiddenPlaytime);
-      let hiddenGenre = document.createElement("p");
-      hiddenGenre.classList.add("hidden-genre");
-      hiddenGenre.textContent = `${genre}`;
-      hiddenGameCard.appendChild(hiddenGenre);
-      let hiddenPlatform = document.createElement("p");
-      hiddenPlatform.classList.add("hidden-platform");
-      hiddenPlatform.textContent = `${platform}`;
-      hiddenGameCard.appendChild(hiddenPlatform);
-      let hiddenStatus = document.createElement("p");
-      hiddenStatus.classList.add("hidden-status");
-      hiddenStatus.textContent = `${played}`;
-      hiddenGameCard.appendChild(hiddenStatus);
-      let restoreButton = document.createElement("button");
-      restoreButton.classList.add("restore");
-      restoreButton.textContent = "Restore";
-      hiddenGameCard.appendChild(restoreButton);
-      restoreButton.addEventListener("click", () => {
-        showCard(uid);
-        searchFunction();
-        hiddenList.removeChild(hiddenGameCard);
-        gameCard.classList.remove("no-visibility");
-      });
+    let hiddenGameCard = document.createElement("div");
+    hiddenGameCard.classList.add("hidden-game-card");
+    hiddenList.appendChild(hiddenGameCard);
+    let hiddenTitle = document.createElement("h3");
+    hiddenTitle.classList.add("hidden-name");
+    hiddenTitle.textContent = `${name}`;
+    hiddenGameCard.appendChild(hiddenTitle);
+    let hiddenPlaytime = document.createElement("p");
+    hiddenPlaytime.classList.add("hidden-playtime");
+    hiddenPlaytime.textContent = `${playtime}h`;
+    hiddenGameCard.appendChild(hiddenPlaytime);
+    let hiddenGenre = document.createElement("p");
+    hiddenGenre.classList.add("hidden-genre");
+    hiddenGenre.textContent = `${genre}`;
+    hiddenGameCard.appendChild(hiddenGenre);
+    let hiddenPlatform = document.createElement("p");
+    hiddenPlatform.classList.add("hidden-platform");
+    hiddenPlatform.textContent = `${platform}`;
+    hiddenGameCard.appendChild(hiddenPlatform);
+    let hiddenStatus = document.createElement("p");
+    hiddenStatus.classList.add("hidden-status");
+    hiddenStatus.textContent = `${played}`;
+    hiddenGameCard.appendChild(hiddenStatus);
+    let restoreButton = document.createElement("button");
+    restoreButton.classList.add("restore");
+    restoreButton.textContent = "Restore";
+    hiddenGameCard.appendChild(restoreButton);
+    storeParameters();
+    restoreButton.addEventListener("click", () => {
+      showCard(uid);
+      searchFunction();
+      hiddenList.removeChild(hiddenGameCard);
+      gameCard.classList.remove("no-visibility");
+      storeParameters();
+    });
   });
   let deleteButton = document.createElement("img");
   deleteButton.classList.add("card-svg");
@@ -340,10 +434,10 @@ function createCard(uid, cover, name, playtime, genre, platform, played, favorit
     if (contentDiv.hasChildNodes() == false && placeholderCounter == 0) {
       document.body.appendChild(placeholderPara);
       placeholderCounter = 1;
-    }
-    else if (placeholderCounter == 1) {
+    } else if (placeholderCounter == 1) {
       document.body.removeChild(placeholderPara);
       placeholderCounter = 0;
     }
+    storeParameters();
   });
 }
