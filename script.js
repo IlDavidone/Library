@@ -67,7 +67,9 @@ window.addEventListener("load", (event) => {
   username.textContent = profileInfoDeserialization.username;
   profileImage.src = profileInfoDeserialization.picture;
   profileImagePreview.src = profileInfoDeserialization.picture;
-  contentDiv.style.gridTemplateColumns = `repeat(${profileInfoDeserialization.gridsize}, 1fr)`;});
+  contentDiv.style.gridTemplateColumns = `repeat(${profileInfoDeserialization.gridsize}, 1fr)`;
+
+  });
 
 function Game(name, playtime, genre, played, platform, cover) {
   this.name = name;
@@ -232,7 +234,7 @@ function searchFunction() {
   let searchbarValue = document.querySelector(".searchbar").value;
   contentDiv.textContent = "";
   for (let i = 0; i < gameArr.length; i++) {
-    if (gameArr[i].name.includes(searchbarValue) == true) {
+    if ((gameArr[i].name.toLowerCase()).includes(searchbarValue.toLowerCase()) == true) {
       if (gameArr[i].visible == false) {
         return;
       }
