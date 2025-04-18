@@ -36,136 +36,19 @@ Game.prototype.createElement = function () {
   searchButton.addEventListener("click", () => {
     searchFunction();
   });
-  let gameCard = document.createElement("div");
-  gameCard.classList.add("game-card");
-  contentDiv.appendChild(gameCard);
-  let gameCardCover = document.createElement("img");
-  gameCardCover.classList.add("card-cover");
-  gameCardCover.src = `${this.cover}`;
-  gameCard.appendChild(gameCardCover);
-  let gameTitle = document.createElement("h2");
-  gameTitle.classList.add("game-title");
-  gameTitle.textContent = `${this.name}`;
-  gameCard.appendChild(gameTitle);
-  let cardTextWrapper0 = document.createElement("div");
-  cardTextWrapper0.classList.add("card-text-wrapper");
-  let playtimeCard = document.createElement("p");
-  playtimeCard.classList.add("playtime-card");
-  playtimeCard.textContent = `Playtime: ${this.playtime}h `;
-  cardTextWrapper0.appendChild(playtimeCard);
-  let playtimeCardIcon = document.createElement("img");
-  playtimeCardIcon.classList.add("card-icons");
-  playtimeCardIcon.src = "./Assets/time-line.svg";
-  cardTextWrapper0.appendChild(playtimeCardIcon);
-  gameCard.appendChild(cardTextWrapper0);
-  let cardTextWrapper1 = document.createElement("div");
-  cardTextWrapper1.classList.add("card-text-wrapper");
-  let genreCard = document.createElement("p");
-  genreCard.classList.add("genre-card");
-  genreCard.textContent = `Genre: ${this.genre} `;
-  cardTextWrapper1.appendChild(genreCard);
-  let genreCardIcon = document.createElement("img");
-  genreCardIcon.classList.add("card-icons");
-  genreCardIcon.src = "./Assets/puzzle-line.svg";
-  cardTextWrapper1.appendChild(genreCardIcon);
-  gameCard.appendChild(cardTextWrapper1);
-  let cardTextWrapper2 = document.createElement("div");
-  cardTextWrapper2.classList.add("card-text-wrapper");
-  let platformCard = document.createElement("p");
-  platformCard.classList.add("platform-card");
-  platformCard.textContent = `Platform: ${this.platform} `;
-  cardTextWrapper2.appendChild(platformCard);
-  let platformCardIcon = document.createElement("img");
-  platformCardIcon.classList.add("card-icons");
-  if (this.platform == "PC") {
-    platformCardIcon.src = "./Assets/steam-fill.svg";
-  } else if (this.platform == "Playstation") {
-    platformCardIcon.src = "./Assets/playstation-fill.svg";
-  } else if (this.platform == "Xbox") {
-    platformCardIcon.src = "./Assets/xbox-fill.svg";
-  } else if (this.platform == "Nintendo Switch") {
-    platformCardIcon.src = "./Assets/switch-fill.svg";
-  }
-  cardTextWrapper2.appendChild(platformCardIcon);
-  gameCard.appendChild(cardTextWrapper2);
-  let cardTextWrapper3 = document.createElement("div");
-  cardTextWrapper3.classList.add("card-text-wrapper");
-  let playedStatus = document.createElement("p");
-  playedStatus.classList.add("played-status");
-  playedStatus.textContent = `Status: ${this.played} `;
-  cardTextWrapper3.appendChild(playedStatus);
-  let playedStatusIcon = document.createElement("img");
-  playedStatusIcon.classList.add("card-icons");
-  playedStatusIcon.src = "./Assets/time-line.svg";
-  cardTextWrapper3.appendChild(playedStatusIcon);
-  gameCard.appendChild(cardTextWrapper3);
-  let buttonsContainer = document.createElement("div");
-  buttonsContainer.classList.add("buttons-container");
-  gameCard.appendChild(buttonsContainer);
-  let favoriteButton = document.createElement("img");
-  favoriteButton.classList.add("card-svg");
-  favoriteButton.src = "./Assets/star-line.svg";
-  buttonsContainer.appendChild(favoriteButton);
-  favoriteButton.addEventListener("click", () => {
-    this.favorite == false ? this.favorite = true : this.favorite = false;
-    if (this.favorite == true) {
-      favoriteButton.src = "./Assets/star-fill.svg";
-    }
-    else if (this.favorite == false) {
-      favoriteButton.src = "./Assets/star-line.svg";
-    }
-  })
-  let hideButton = document.createElement("img");
-  hideButton.classList.add("card-svg");
-  hideButton.src = "./Assets/eye-line.svg";
-  buttonsContainer.appendChild(hideButton);
-  hideButton.addEventListener("click", () => {
-    hideCard(uid);
-    gameCard.classList.toggle("no-visibility");
-    if (this.visible == false) {
-      let hiddenGameCard = document.createElement("div");
-      hiddenGameCard.classList.add("hidden-game-card");
-      hiddenList.appendChild(hiddenGameCard);
-      let hiddenTitle = document.createElement("h3");
-      hiddenTitle.classList.add("hidden-name");
-      hiddenTitle.textContent = `${this.name}`;
-      hiddenGameCard.appendChild(hiddenTitle);
-      let hiddenPlaytime = document.createElement("p");
-      hiddenPlaytime.classList.add("hidden-playtime");
-      hiddenPlaytime.textContent = `${this.playtime}h`;
-      hiddenGameCard.appendChild(hiddenPlaytime);
-      let hiddenGenre = document.createElement("p");
-      hiddenGenre.classList.add("hidden-genre");
-      hiddenGenre.textContent = `${this.genre}`;
-      hiddenGameCard.appendChild(hiddenGenre);
-      let hiddenPlatform = document.createElement("p");
-      hiddenPlatform.classList.add("hidden-platform");
-      hiddenPlatform.textContent = `${this.platform}`;
-      hiddenGameCard.appendChild(hiddenPlatform);
-      let hiddenStatus = document.createElement("p");
-      hiddenStatus.classList.add("hidden-status");
-      hiddenStatus.textContent = `${this.played}`;
-      hiddenGameCard.appendChild(hiddenStatus);
-      let restoreButton = document.createElement("button");
-      restoreButton.classList.add("restore");
-      restoreButton.textContent = "Restore";
-      hiddenGameCard.appendChild(restoreButton);
-      restoreButton.addEventListener("click", () => {
-        this.visible = true;
-        hiddenList.removeChild(hiddenGameCard);
-        gameCard.classList.toggle("no-visibility");
-      });
-    }
-  });
-  let deleteButton = document.createElement("img");
-  deleteButton.classList.add("card-svg");
-  deleteButton.src = "./Assets/delete-bin-line.svg";
-  buttonsContainer.appendChild(deleteButton);
-  deleteButton.addEventListener("click", () => {
-    contentDiv.removeChild(gameCard);
-    removeObject(uid);
-  });
+  createCard(this.uid,
+    this.cover,
+    this.name,
+    this.playtime,
+    this.genre,
+    this.platform,
+    this.played,
+    this.favorite,
+    this.visible
+  )
 };
+
+//uid, cover, name, playtime, genre, platform, played, favorite, visible
 
 function removeObject(uid) {
   for (let i = 0; i < gameArr.length; i++) {
@@ -234,22 +117,37 @@ function searchFunction() {
     let searchbarValue = document.querySelector(".searchbar").value;
     for (let i = 0; i < gameArr.length; i++) {
       if ((gameArr[i].name).includes(searchbarValue) == true) {
-        let gameCard = document.createElement("div");
+        createCard(gameArr[i].uid, 
+          gameArr[i].cover,
+          gameArr[i].name,
+          gameArr[i].playtime,
+          gameArr[i].genre,
+          gameArr[i].platform,
+          gameArr[i].played,
+          gameArr[i].favorite,
+          gameArr[i].visible
+        )
+      }
+    }
+  }
+
+function createCard(uid, cover, name, playtime, genre, platform, played, favorite, visible) {
+  let gameCard = document.createElement("div");
   gameCard.classList.add("game-card");
   contentDiv.appendChild(gameCard);
   let gameCardCover = document.createElement("img");
   gameCardCover.classList.add("card-cover");
-  gameCardCover.src = `${gameArr[i].cover}`;
+  gameCardCover.src = `${cover}`;
   gameCard.appendChild(gameCardCover);
   let gameTitle = document.createElement("h2");
   gameTitle.classList.add("game-title");
-  gameTitle.textContent = `${gameArr[i].name}`;
+  gameTitle.textContent = `${name}`;
   gameCard.appendChild(gameTitle);
   let cardTextWrapper0 = document.createElement("div");
   cardTextWrapper0.classList.add("card-text-wrapper");
   let playtimeCard = document.createElement("p");
   playtimeCard.classList.add("playtime-card");
-  playtimeCard.textContent = `Playtime: ${gameArr[i].playtime}h `;
+  playtimeCard.textContent = `Playtime: ${playtime}h `;
   cardTextWrapper0.appendChild(playtimeCard);
   let playtimeCardIcon = document.createElement("img");
   playtimeCardIcon.classList.add("card-icons");
@@ -260,7 +158,7 @@ function searchFunction() {
   cardTextWrapper1.classList.add("card-text-wrapper");
   let genreCard = document.createElement("p");
   genreCard.classList.add("genre-card");
-  genreCard.textContent = `Genre: ${gameArr[i].genre} `;
+  genreCard.textContent = `Genre: ${genre} `;
   cardTextWrapper1.appendChild(genreCard);
   let genreCardIcon = document.createElement("img");
   genreCardIcon.classList.add("card-icons");
@@ -271,17 +169,17 @@ function searchFunction() {
   cardTextWrapper2.classList.add("card-text-wrapper");
   let platformCard = document.createElement("p");
   platformCard.classList.add("platform-card");
-  platformCard.textContent = `Platform: ${gameArr[i].platform} `;
+  platformCard.textContent = `Platform: ${platform} `;
   cardTextWrapper2.appendChild(platformCard);
   let platformCardIcon = document.createElement("img");
   platformCardIcon.classList.add("card-icons");
-  if (gameArr[i].platform == "PC") {
+  if (platform == "PC") {
     platformCardIcon.src = "./Assets/steam-fill.svg";
-  } else if (gameArr[i].platform == "Playstation") {
+  } else if (platform == "Playstation") {
     platformCardIcon.src = "./Assets/playstation-fill.svg";
-  } else if (gameArr[i].platform == "Xbox") {
+  } else if (platform == "Xbox") {
     platformCardIcon.src = "./Assets/xbox-fill.svg";
-  } else if (gameArr[i].platform == "Nintendo Switch") {
+  } else if (platform == "Nintendo Switch") {
     platformCardIcon.src = "./Assets/switch-fill.svg";
   }
   cardTextWrapper2.appendChild(platformCardIcon);
@@ -290,7 +188,7 @@ function searchFunction() {
   cardTextWrapper3.classList.add("card-text-wrapper");
   let playedStatus = document.createElement("p");
   playedStatus.classList.add("played-status");
-  playedStatus.textContent = `Status: ${gameArr[i].played} `;
+  playedStatus.textContent = `Status: ${played} `;
   cardTextWrapper3.appendChild(playedStatus);
   let playedStatusIcon = document.createElement("img");
   playedStatusIcon.classList.add("card-icons");
@@ -305,55 +203,62 @@ function searchFunction() {
   favoriteButton.src = "./Assets/star-line.svg";
   buttonsContainer.appendChild(favoriteButton);
   favoriteButton.addEventListener("click", () => {
-    gameArr[i].favorite == false ? gameArr[i].favorite = true : gameArr[i].favorite = false;
-    if (gameArr[i].favorite == true) {
+    favorite == false ? favorite = true : favorite = false;
+    if (favorite == true) {
       favoriteButton.src = "./Assets/star-fill.svg";
     }
-    else if (gameArr[i].favorite == false) {
+    else if (favorite == false) {
       favoriteButton.src = "./Assets/star-line.svg";
     }
-  });
+  })
   let hideButton = document.createElement("img");
   hideButton.classList.add("card-svg");
   hideButton.src = "./Assets/eye-line.svg";
   buttonsContainer.appendChild(hideButton);
   hideButton.addEventListener("click", () => {
     hideCard(uid);
-    gameCard.classList.toggle("no-visibility")});
-    if (gameArr[i].visible == false) {
+    gameCard.classList.toggle("no-visibility");
+    if (visible == false) {
       let hiddenGameCard = document.createElement("div");
       hiddenGameCard.classList.add("hidden-game-card");
       hiddenList.appendChild(hiddenGameCard);
       let hiddenTitle = document.createElement("h3");
       hiddenTitle.classList.add("hidden-name");
-      hiddenTitle.textContent = `${gameArr[i].name}`;
+      hiddenTitle.textContent = `${name}`;
       hiddenGameCard.appendChild(hiddenTitle);
       let hiddenPlaytime = document.createElement("p");
       hiddenPlaytime.classList.add("hidden-playtime");
-      hiddenPlaytime.textContent = `${gameArr[i].playtime}h`;
+      hiddenPlaytime.textContent = `${playtime}h`;
       hiddenGameCard.appendChild(hiddenPlaytime);
       let hiddenGenre = document.createElement("p");
       hiddenGenre.classList.add("hidden-genre");
-      hiddenGenre.textContent = `${gameArr[i].genre}`;
+      hiddenGenre.textContent = `${genre}`;
       hiddenGameCard.appendChild(hiddenGenre);
       let hiddenPlatform = document.createElement("p");
       hiddenPlatform.classList.add("hidden-platform");
-      hiddenPlatform.textContent = `${gameArr[i].platform}`;
+      hiddenPlatform.textContent = `${platform}`;
       hiddenGameCard.appendChild(hiddenPlatform);
       let hiddenStatus = document.createElement("p");
       hiddenStatus.classList.add("hidden-status");
-      hiddenStatus.textContent = `${gameArr[i].platform}`;
+      hiddenStatus.textContent = `${played}`;
       hiddenGameCard.appendChild(hiddenStatus);
       let restoreButton = document.createElement("button");
       restoreButton.classList.add("restore");
       restoreButton.textContent = "Restore";
       hiddenGameCard.appendChild(restoreButton);
       restoreButton.addEventListener("click", () => {
-        gameArr[i].visible = true;
+        visible = true;
         hiddenList.removeChild(hiddenGameCard);
         gameCard.classList.toggle("no-visibility");
       });
-      }
     }
-  }
+  });
+  let deleteButton = document.createElement("img");
+  deleteButton.classList.add("card-svg");
+  deleteButton.src = "./Assets/delete-bin-line.svg";
+  buttonsContainer.appendChild(deleteButton);
+  deleteButton.addEventListener("click", () => {
+    contentDiv.removeChild(gameCard);
+    removeObject(uid);
+  });
 }
