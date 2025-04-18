@@ -16,7 +16,13 @@ const header = document.querySelector(".header");
 
 let gameArr = [],
   gameCardArr = [],
+  placeholderCounter = 0,
   inputMenuOpened = 0;
+
+let placeholderPara = document.createElement("p");
+  placeholderPara.textContent = "Looks like there's nothing here to see...";
+  placeholderPara.classList.add("placeholder");
+
 
 function Game(name, playtime, genre, played, platform, cover) {
   this.name = name;
@@ -91,6 +97,10 @@ Button.addEventListener("click", () => {
   );
   gameArr.push(game);
   game.createElement();
+  if (placeholderCounter == 1) {
+    document.body.removeChild(placeholderPara);
+    placeholderCounter = 0;
+  }
 });
 
 addButton.addEventListener("click", () => {
@@ -275,5 +285,13 @@ function createCard(uid, cover, name, playtime, genre, platform, played, favorit
   deleteButton.addEventListener("click", () => {
     contentDiv.removeChild(gameCard);
     removeObject(uid);
+    if (contentDiv.hasChildNodes() == false && placeholderCounter == 0) {
+      document.body.appendChild(placeholderPara);
+      placeholderCounter = 1;
+    }
+    else if (placeholderCounter == 1) {
+      document.body.removeChild(placeholderPara);
+      placeholderCounter = 0;
+    }
   });
 }

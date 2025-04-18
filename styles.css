@@ -59,6 +59,11 @@ p {
     }
 }
 
+.placeholder {
+    text-align: center;
+    color: rgb(145, 145, 145);
+}
+
 .header {
     padding: 25px 35px 25px 35px;
     display: grid;
