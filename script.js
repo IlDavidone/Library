@@ -30,12 +30,13 @@ function Game(name, playtime, genre, played, platform, cover) {
   this.uid = crypto.randomUUID();
 }
 
-Game.prototype.createElement = function () {
-  let uid = this.uid;
-  const searchButton = document.querySelector(".search-button");
+const searchButton = document.querySelector(".search-button");
   searchButton.addEventListener("click", () => {
     searchFunction();
   });
+
+Game.prototype.createElement = function () {
+  let uid = this.uid;
   createCard(this.uid,
     this.cover,
     this.name,
@@ -45,7 +46,7 @@ Game.prototype.createElement = function () {
     this.played,
     this.favorite,
     this.visible
-  )
+  );
 };
 
 //uid, cover, name, playtime, genre, platform, played, favorite, visible
@@ -64,6 +65,16 @@ function hideCard(uid) {
       gameArr[i].visible = false;
     } else if (gameArr[i].uid == uid && gameArr[i].visible == false) {
       gameArr[i].visible = true;
+    }
+  }
+}
+
+function showCard(uid) {
+  for (let i = 0; i < gameArr.length; i++) {
+    if (gameArr[i].uid == uid && gameArr[i].visible == false) {
+      gameArr[i].visible = true;
+    } else if (gameArr[i].uid == uid && gameArr[i].visible == true) {
+      gameArr[i].visible = false;
     }
   }
 }
@@ -113,10 +124,14 @@ closeHidden.addEventListener("click", () => {
 
 
 function searchFunction() {
+  let searchbarValue = document.querySelector(".searchbar").value;
   contentDiv.textContent = "";
-    let searchbarValue = document.querySelector(".searchbar").value;
     for (let i = 0; i < gameArr.length; i++) {
       if ((gameArr[i].name).includes(searchbarValue) == true) {
+        if (gameArr[i].visible == false) {
+          return;
+        }
+        if (gameArr[i].visible == true){
         createCard(gameArr[i].uid, 
           gameArr[i].cover,
           gameArr[i].name,
@@ -126,7 +141,8 @@ function searchFunction() {
           gameArr[i].played,
           gameArr[i].favorite,
           gameArr[i].visible
-        )
+        );
+      }
       }
     }
   }
@@ -217,8 +233,7 @@ function createCard(uid, cover, name, playtime, genre, platform, played, favorit
   buttonsContainer.appendChild(hideButton);
   hideButton.addEventListener("click", () => {
     hideCard(uid);
-    gameCard.classList.toggle("no-visibility");
-    if (visible == false) {
+    gameCard.classList.add("no-visibility");
       let hiddenGameCard = document.createElement("div");
       hiddenGameCard.classList.add("hidden-game-card");
       hiddenList.appendChild(hiddenGameCard);
@@ -247,11 +262,11 @@ function createCard(uid, cover, name, playtime, genre, platform, played, favorit
       restoreButton.textContent = "Restore";
       hiddenGameCard.appendChild(restoreButton);
       restoreButton.addEventListener("click", () => {
-        visible = true;
+        showCard(uid);
+        searchFunction();
         hiddenList.removeChild(hiddenGameCard);
-        gameCard.classList.toggle("no-visibility");
+        gameCard.classList.remove("no-visibility");
       });
-    }
   });
   let deleteButton = document.createElement("img");
   deleteButton.classList.add("card-svg");
