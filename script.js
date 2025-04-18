@@ -13,6 +13,8 @@ const testDiv = document.querySelector(".test");
 const hiddenButton = document.querySelector(".hidden");
 const hiddenList = document.querySelector(".hidden-list");
 const header = document.querySelector(".header");
+const settingsButton = document.querySelector(".settings-button");
+const settingsMenu = document.querySelector(".settings");
 
 let gameArr = [],
   gameCardArr = [],
@@ -105,6 +107,8 @@ Button.addEventListener("click", () => {
 
 addButton.addEventListener("click", () => {
   inputContainer.classList.add("opened");
+  settingsMenu.classList.remove("opened");
+  hiddenList.classList.remove("opened");
   contentDiv.classList.add("blur-effect");
   header.classList.add("blur-effect");
 });
@@ -125,6 +129,8 @@ document.addEventListener("keydown", (e) => {
 
 hiddenButton.addEventListener("click", () => {
   hiddenList.classList.add("opened");
+  settingsMenu.classList.remove("opened");
+  inputContainer.classList.remove("opened");
   contentDiv.classList.add("blur-effect");
   header.classList.add("blur-effect");
 });
@@ -132,6 +138,21 @@ hiddenButton.addEventListener("click", () => {
 const closeHidden = document.querySelector(".close-hidden");
 closeHidden.addEventListener("click", () => {
   hiddenList.classList.remove("opened");
+  contentDiv.classList.remove("blur-effect");
+  header.classList.remove("blur-effect");
+});
+
+settingsButton.addEventListener("click", () => {
+  settingsMenu.classList.add("opened");
+  hiddenList.classList.remove("opened");
+  inputContainer.classList.remove("opened");
+  contentDiv.classList.add("blur-effect");
+  header.classList.add("blur-effect");
+});
+
+const closeSettings = document.querySelector(".close-settings");
+closeSettings.addEventListener("click", () => {
+  settingsMenu.classList.remove("opened");
   contentDiv.classList.remove("blur-effect");
   header.classList.remove("blur-effect");
 });

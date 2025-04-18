@@ -90,7 +90,7 @@ p {
 .image-container {
     height: 120px;
     width: 120px;
-    background-color: rgb(199, 199, 199);
+    background-color: rgb(228, 228, 228);
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -230,17 +230,132 @@ p {
     justify-items: center;
 }
 
+.settings {
+    background-color: rgb(255, 255, 255);
+    position: fixed;
+    visibility: hidden;
+    border-radius: 10px;
+    left: 0;
+    right: 0;
+    margin: 5% auto;
+    height: fit-content;
+    width: 45%;
+    border: 2px solid rgb(185, 185, 185);
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.close-settings {
+    margin: 10px 0 0 10px;
+    min-height: 30px;
+    min-width: 30px;
+    height: 30px; 
+    width: 30px;
+    border-radius: 5px;
+    border: 1px solid rgb(185, 185, 185);
+    background-color: white;
+}
+
+.settings-wrapper {
+    padding: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-image-wrapper {
+    height: 100px;
+    width: 100px;
+    background-color: rgb(228, 228, 228);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-image-preview {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+}
+
+.profile-settings-wrapper {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.profile-input {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+.profile-input > input {
+    height: 25px;
+    width: 250px;
+    border-radius: 5px;
+    border: 1px solid rgb(185, 185, 185);
+}
+
+.profile-input > input::placeholder {
+    text-align: center;
+}
+
+.grid-setting {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.05rem;
+}
+
+.grid-size {
+    width: 200px;
+    accent-color: lightgrey;
+}
+
+.save-settings {
+    height: 50px;
+    width: 250px;
+    background-color: rgb(255, 255, 255);
+    font-size: 1.3rem;
+    border-radius: 10px;
+    margin-top: 5px;
+    border: 1px solid rgb(185, 185, 185);
+    font-weight: 500;
+    margin-top: 30px;
+}
+
+.save-settings:hover {
+    background-color: rgb(238, 238, 238);
+    transition-duration: 0.2s;
+}
+
+.save-settings:active {
+    background-color: rgb(226, 226, 226);
+    transition-duration: 0.2s;
+}
+
 .input-container {
     position: fixed;
     background-color: rgb(255, 255, 255);
     border-radius: 10px;
     border: 2px solid rgb(185, 185, 185);
     margin: 5% auto;
-    height: 45%;
+    height: fit-content;
     width: 35%;
     left: 0;
     right: 0;
     visibility: hidden;
+    display: flex;
+    flex-direction: column;
     opacity: 0;
 }
 
@@ -256,6 +371,10 @@ p {
     border-radius: 5px;
     border: 1px solid rgb(185, 185, 185);
     background-color: white;
+    min-height: 30px;
+    min-width: 30px;
+    height: 30px; 
+    width: 30px;
 }
 
 .close:hover {

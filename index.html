@@ -18,29 +18,69 @@
     <header class="header">
       <div class="left-side-elements">
         <div class="image-container">
-          <img src="./Assets/no-image.svg" alt="" class="profile-image">
+          <img src="" alt="" class="profile-image" />
         </div>
         <div class="profile-info">
-        <p class="greetings">Welcome back</p>
-        <h2 class="username">User</h2>
+          <p class="greetings">Welcome back</p>
+          <h2 class="username">User</h2>
         </div>
       </div>
       <div class="center-side-elements">
-        <input type="search" name="search" placeholder="Search for a game..." class="searchbar">
-        <img src="./Assets/search-line.svg" alt="" class="search-button">
+        <input
+          type="search"
+          name="search"
+          placeholder="Search for a game..."
+          class="searchbar"
+        />
+        <img src="./Assets/search-line.svg" alt="" class="search-button" />
       </div>
       <div class="right-side-elements">
-      <button class="add header-buttons">
-        <img src="./Assets/add-line.svg" alt="" class="header-icons" />
-      </button>
-      <button class="hidden header-buttons">
-        <img src="./Assets/eye-off-line.svg" alt="" class="header-icons" />
-      </button>
-      <button class="header-buttons">
-        <img src="./Assets/settings-3-line.svg" alt="" class="header-icons">
-      </button>
+        <button class="add header-buttons">
+          <img src="./Assets/add-line.svg" alt="" class="header-icons" />
+        </button>
+        <button class="hidden header-buttons">
+          <img src="./Assets/eye-off-line.svg" alt="" class="header-icons" />
+        </button>
+        <button class="settings-button header-buttons">
+          <img src="./Assets/settings-3-line.svg" alt="" class="header-icons" />
+        </button>
       </div>
     </header>
+
+    <div class="settings">
+      <button class="close-settings">X</button>
+      <div class="settings-wrapper">
+        <div class="profile-settings-wrapper">
+          <div class="profile-image-wrapper">
+            <img src="" alt="" class="profile-image-preview" />
+          </div>
+          <div class="profile-input">
+            <input type="text" name="username" placeholder="Username..." />
+            <input
+              type="text"
+              name="profile-picture-url"
+              placeholder="Picture Url..."
+            />
+          </div>
+        </div>
+        <div class="grid-setting">
+        <p>
+          Game Cards grid size:
+          <label for="grid-size" class="grid-size">5</label>
+        </p>
+        <input
+          type="range"
+          id="grid-size"
+          name="grid-size"
+          id=""
+          min="2"
+          max="6"
+          class="grid-size"
+        />
+        </div>
+        <button class="save-settings">Save</button>
+      </div>
+    </div>
 
     <div class="hidden-list">
       <button class="close-hidden">X</button>
