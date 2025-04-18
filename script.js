@@ -125,11 +125,15 @@ document.addEventListener("keydown", (e) => {
 
 hiddenButton.addEventListener("click", () => {
   hiddenList.classList.add("opened");
+  contentDiv.classList.add("blur-effect");
+  header.classList.add("blur-effect");
 });
 
 const closeHidden = document.querySelector(".close-hidden");
 closeHidden.addEventListener("click", () => {
   hiddenList.classList.remove("opened");
+  contentDiv.classList.remove("blur-effect");
+  header.classList.remove("blur-effect");
 });
 
 

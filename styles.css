@@ -180,14 +180,14 @@ p {
 .hidden-list {
     position: fixed;
     visibility: hidden;
+    border-radius: 10px;
     left: 0;
     right: 0;
     margin: 5% auto;
-    background-color: rgb(234, 247, 247);
+    background-color: rgb(255, 255, 255);
     height: 60%;
     width: 60%;
-    display: grid;
-    border: 1px solid black;
+    border: 2px solid rgb(185, 185, 185);
     overflow: auto;
     display: flex;
     flex-direction: column;
@@ -195,14 +195,18 @@ p {
 
 .hidden-game-card > p {
     font-weight: 700;
+    text-align: center;
 }
 
 .close-hidden {
-    margin: 5px 0 0 5px;
+    margin: 10px 0 0 10px;
     min-height: 40px;
     min-width: 40px;
     height: 40px; 
     width: 40px;
+    border-radius: 5px;
+    border: 1px solid rgb(185, 185, 185);
+    background-color: white;
 }
 
 .hidden-name {
@@ -221,6 +225,7 @@ p {
     padding: 10px 10px 10px 10px;
     align-items: center;
     display: grid;
+    gap: 10px;
     grid-template-columns: 1.2fr 1fr 1fr 1fr 1fr 1fr;
     justify-items: center;
 }
