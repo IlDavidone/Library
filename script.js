@@ -133,6 +133,10 @@ function showCard(uid) {
   }
 }
 
+function sortByCrescentName() {
+  gameArr.sort((a, b) => a.name.localeCompare(b.name));
+}
+
 const Button = document.querySelector(".add-button");
 Button.addEventListener("click", () => {
   let game = new Game(
@@ -228,6 +232,26 @@ saveSettingsButton.addEventListener("click", () => {
   profileImagePreview.src = profilePictureUrl.value;
   contentDiv.style.gridTemplateColumns = `repeat(${gridSize.value}, 1fr)`;
   storeProfileParameters();
+  contentDiv.textContent = "";
+  for (let i = 0; i < gameArr.length; i++) {
+    if (gameArr[i].visible == false) {
+      return;
+    }
+    if (gameArr[i].visible == true) {
+      createCard(
+        gameArr[i].uid,
+        gameArr[i].cover,
+        gameArr[i].name,
+        gameArr[i].playtime,
+        gameArr[i].genre,
+        gameArr[i].platform,
+        gameArr[i].played,
+        gameArr[i].favorite,
+        gameArr[i].visible
+      );
+    }
+  }
+  sortByCrescentName();
 });
 
 function searchFunction() {
